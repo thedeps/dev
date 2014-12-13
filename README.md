@@ -11,3 +11,5 @@
 ``` vagrant up ```
 
 ``` vagrant ssh ```
+
+Caso algum erro acontecer, use o ```vagrant destroy```, e tente os passos acima denovo.
