@@ -43,3 +43,4 @@ install 'nodejs runtime' nodejs
 
 ##
 gem install rails
+gem install rspec
