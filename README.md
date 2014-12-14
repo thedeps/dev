@@ -15,6 +15,8 @@ Caso algum erro acontecer, use o ```vagrant destroy```, e tente os passos 2 e 3 
 4. ``` vagrant ssh ```
 
 
-5. ``` cd applications && rails server ```
+5. ``` cd applications && bundle install ```
 
-Passo 5 rodará a aplicação, que poderá ser acessada -> ```192.168.33.100:3000```
+6. ``` rails server ```
+
+Passo 6 rodará a aplicação, que poderá ser acessada -> ```192.168.33.100:3000```
