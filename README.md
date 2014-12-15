@@ -14,8 +14,7 @@ Caso algum erro acontecer, use o ```vagrant destroy```, e tente os passos 2 e 3 
 
 4. ``` vagrant ssh ```
 
-
-5. ``` cd applications && bundle install ```
+5. ``` cd applications && bundle install && rake db:migrate```
 
 6. ``` rails server ```
 
