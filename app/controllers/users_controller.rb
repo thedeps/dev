@@ -31,11 +31,11 @@ class UsersController < ApplicationController
 
         UserMailer.confirmation_mail(@user).deliver
 
-        format.html { redirect_to @user, notice: 'Check your e-mail for confirmation' }
-        format.json { render :show, status: :created, location: @user }
+        format.html { redirect_to :root, notice: 'Check your e-mail for confirmation' }
+
       else
         format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+
       end
     end
   end
