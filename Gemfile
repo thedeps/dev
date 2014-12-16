@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby "2.1.5"
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use sqlite3 as the database for Active Record
@@ -29,6 +27,7 @@ gem 'spring',        group: :development
 
 gem 'bcrypt-ruby', '~> 3.1.5', require: "bcrypt"
 
+gem 'rails_12factor', group: :production
 
 # Front-end related gems
 gem 'bootstrap-sass', '~> 3.2.0'
@@ -48,3 +47,4 @@ gem 'bootstrap-generators', '~> 3.3.1'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+ruby "2.1.4"
