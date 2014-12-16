@@ -9,8 +9,8 @@ development:
   encoding: unicode
   database: deps
   pool: 5
-  username: vagrant
-  password:
+  # username: vagrant
+  # password:
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,13 +20,13 @@ test:
   encoding: unicode
   database: deps
   pool: 5
-  username: vagrant
-  password:
+  # username: vagrant
+  # password:
 
 production:
   adapter: postgresql
   encoding: unicode
   database: deps
   pool: 5
-  username: vagrant
-  password:
+  # username: vagrant
+  # password:
