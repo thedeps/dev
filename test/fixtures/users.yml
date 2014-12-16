@@ -5,11 +5,9 @@ one:
   id_steam: MyString
   email: MyString
   password: MyString
-  category: MyString
 
 two:
   login: MyString
   id_steam: MyString
   email: MyString
   password: MyString
-  category: MyString
