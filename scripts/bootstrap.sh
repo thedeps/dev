@@ -23,6 +23,11 @@ gem install bundler -N >/dev/null 2>&1
 install Git git
 install SQLite sqlite3 libsqlite3-dev
 
+install PostgreSQL postgresql postgresql-contrib libpq-dev
+sudo -u postgres createuser --superuser vagrant
+sudo -u postgres createdb -O vagrant activerecord_unittest
+sudo -u postgres createdb -O vagrant activerecord_unittest2
+
 ##
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
