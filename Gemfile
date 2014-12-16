@@ -32,6 +32,7 @@ gem 'bcrypt-ruby', '~> 3.1.5', require: "bcrypt"
 # Front-end related gems
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'bootstrap-generators', '~> 3.3.1'
 
 
 # Use ActiveModel has_secure_password
