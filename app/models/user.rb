@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-
+  
+  belongs_to :category
   validates :email, uniqueness: true
   validates :login, uniqueness: true
   attr_accessor :password

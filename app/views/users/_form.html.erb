@@ -15,23 +15,29 @@
     <%= f.label :login %><br>
     <%= f.text_field :login, :class => "form-control" %>
   </div>
+
   <div class="form-group">
     <%= f.label :id_steam %><br>
     <%= f.text_field :id_steam, :class => "form-control" %>
   </div>
+
   <div class="form-group">
     <%= f.label :email %><br>
     <%= f.text_field :email, :class => "form-control" %>
   </div>
+
   <div class="form-group">
     <%= f.label :password %><br>
-    <%= f.text_field :password, :class => "form-control" %>
+    <%= f.password_field :password, :class => "form-control" %>
   </div>
-  <div class="form-group">
-    <%= f.label :category %><br>
-    <%= f.password_field :category, :class => "form-control" %>
-  </div>
+
+  <select name="category" >
+    <%= options_for_select([['Narrador', 1], ['Jogador', 2]]) %>
+  </select>
+
   <div class="actions">
     <%= f.submit :class => "btn btn-primary"%>
   </div>
+
+
 <% end %>
