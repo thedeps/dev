@@ -74,10 +74,10 @@ class UsersController < ApplicationController
     if @token.save
       @user = User.find_by(login: @token.login)
       respond_to do |format|
-        format.html { redirect_to @user, notice: 'Email confirmed !' }
+        format.html { redirect_to :root, notice: 'Email confirmed !' }
       end
     else
-      render :edit
+      render :root
     end    
 
   end
