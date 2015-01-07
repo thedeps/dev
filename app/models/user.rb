@@ -1,24 +1,20 @@
 class User < ActiveRecord::Base
-  
+  #Associações
   belongs_to :category
-  validates :email, uniqueness: true
-  validates :login, uniqueness: true
-  attr_accessor :password
+  belongs_to  :team
   
-  before_save :encrypt_password
-
-  def encrypt_password
-    self.password_salt = BCrypt::Engine.generate_salt
-    self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
-  end
-
-  def self.authenticate(login, password)
-    user = find_by_login(login)
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-      user
-    else
-      nil
-    end
-  end
-
+  #Validações
+  validates :login, :id_steam, :email, presence: true
+  validates :login, :id_steam,:email, uniqueness: true
+  
+  
+  #Está relacionado ao devise:
+  
+  
+  # Include default devise modules. Others available are:
+  #:confirmable
+  #:lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :trackable, :validatable
+  
 end

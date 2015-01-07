@@ -7,8 +7,8 @@ class UserMailer < ActionMailer::Base
     @user = user
     token = SecureRandom.hex[0,10].upcase
     @token = Token.create(login: @user.login, verified: false, token: token)
-    
-    url = "http://localhost:3000/confirmation?login=" + @user.login + "&token=" + @token.token 
+    # trocar localhost por servername
+    url = "//dev-alexmartinssi-3.c9.io/confirmation?login=" + @user.login + "&token=" + @token.token 
 
     mail(to: @user.email,
          subject: "Email confirmation",

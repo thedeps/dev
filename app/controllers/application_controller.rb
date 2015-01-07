@@ -4,11 +4,24 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
+  
+  before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
-	def current_user
-		@current_user ||= User.find(session[:user_id]) if session[:user_id]
-	end
-	
-	helper_method :current_user
+  protected
+
+  def configure_devise_permitted_parameters
+    registration_params = [:login, :id_steam, :email, :password, :password_confirmation,:category_id,:team_id]
+
+    if params[:action] == 'update'
+      devise_parameter_sanitizer.for(:account_update) { 
+        |u| u.permit(registration_params << :current_password)
+      }
+    elsif params[:action] == 'create'
+      devise_parameter_sanitizer.for(:sign_up) { 
+        |u| u.permit(registration_params) 
+      }
+    end
+  end
+
 	
 end

@@ -1,0 +1,26 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "DotaPB", root_path, :class => "navbar-brand" %>
+      <nav>
+        <ul class="nav pull-right navbar-nav">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to('Equipes', teams_path ) %>
+            </li>
+            <li>
+              <%= link_to('Editar Cadastro', edit_user_registration_path) %>        
+            </li>
+            <li>
+              <%= link_to('Sair', destroy_user_session_path, :method => :delete) %>        
+            </li>
+          <% else %>
+            <li>
+              <%= link_to('Entrar', new_user_session_path)  %>  
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

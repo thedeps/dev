@@ -1,0 +1,57 @@
+<div class="page-header">
+  <h2 class="subhead navbar text-center alert"> <%= @team.name %></h2>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Tag:</dt>
+  <dd><%= @team.tag %></dd>
+
+  <dt>Capitão:</dt>
+  <dd><%= @team.captain %></dd>
+</dl>
+
+<fieldset>
+  <legend>Adicionar Jogador</legend>
+  <%- if @team.users.count < 6 %>
+    <%= form_tag(teams_add_user_path, method: "post") do %>
+      <div class="field">
+        <%= hidden_field_tag(:team_id, @team.id) %>
+        <%= label_tag :user_id, "Jogador: " %>&nbsp;&nbsp;&nbsp;
+        <!--Listando os jogadores, menos o capitão-->
+        <%= select_tag :user_id, options_for_select(User.all.map{|user| [user.id_steam, user.id] unless user.id_steam == @team.captain })%>
+        &nbsp;&nbsp;&nbsp;
+        <%= submit_tag 'Adicionar', class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  <%- else %>
+    <p class="text-center">Atingiu o limite máximo de jogadores</p>
+  <% end %>
+  
+</fieldset>
+
+<fieldset>
+  <legend>Jogadores</legend>
+  <% @team.users.each do |user| %>
+      <p>
+        <strong>Login:</strong>
+        <%= user.login %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>Id_steam:</strong>
+        <%= user.id_steam %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <td><%= link_to '', [user.team, user], method: :delete, data: { confirm: 'Você tem certeza?' },class: 'btn btn-default glyphicon glyphicon-trash' %></td>
+      </p>
+      <hr/>
+  <% end %>
+  <br/>
+</fieldset>
+
+<div class="form-group">
+    <br/>
+    <%= link_to teams_path, :class => 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Voltar
+    <% end %>
+    <%= link_to edit_team_path(@team), :class => 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+      Editar
+    <% end %>
+</div>

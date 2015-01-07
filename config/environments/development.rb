@@ -33,11 +33,13 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   config.action_mailer.delivery_method = :smtp
+  
+  config.action_mailer.default_url_options = { :host => 'dev-alexmartinssi-3.c9.io' }
 
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'localhost',
+    domain:               'dev-alexmartinssi-3.c9.io',
     user_name:            'thedepsdev@gmail.com',
     password:             'deps1234',
     authentication:       'login',
