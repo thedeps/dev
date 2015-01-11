@@ -1,6 +1,6 @@
 <div class="center hero-unit">
   <h3>Bem-vindo ao DotaPB Championship</h3>
-  <br/>
+  <br/><br/>
   <p>
      Contribuir para o prêmio total de Internacional e ganhar vários prêmios especiais.
      O Compêndio Internacional é um livro virtual que permite que você interaja com
@@ -9,9 +9,14 @@
      coleta de figurinhas de jogadores, fazer suposições sobre o que vai acontecer no
      torneio e muito mais. Melhor que isso, só estando lá.
   </p>
-  <br/>
+  
   <% unless user_signed_in? || admin_signed_in? %>
-    <%= link_to "Cadastre-se!", new_user_registration_path , class: "btn btn-primary" %>
+    <h3><%= link_to "Cadastre-se!", new_user_registration_path%></h3>
   <%end%>
+  <br/>
+  <%= image_tag("dotapb.jpg", :alt => "DotaPBLeague")%>
+  <br/><br/>
 </div>
+
+
 

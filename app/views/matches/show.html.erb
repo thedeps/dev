@@ -1,13 +1,5 @@
 <div class="page-header">
-  <%= link_to matches_path, :class => 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to edit_match_path(@match), :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
-  <% end %>
-  <h1>Show match</h1>
+  <h2>Detalhes da Partida</h2>
 </div>
 
 <dl class="dl-horizontal">
@@ -24,3 +16,9 @@
   <dd><%= @match.link %></dd>
 
 </dl>
+
+<%= link_to matches_path, :class => 'btn btn-default' do %>
+  <span class="glyphicon glyphicon-list-alt"></span>
+  Voltar
+<% end %>
+

@@ -1,6 +1,8 @@
 class MatchesController < InheritedResources::Base
   
-
+  def index
+    @matches = Match.all
+  end
   private
 
     def match_params

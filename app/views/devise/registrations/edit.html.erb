@@ -46,5 +46,11 @@
 
 <p>Triste? <%= button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Você tem certeza?" }, method: :delete %></p>
 
-<%= link_to "Voltar", root_path, class: 'btn btn-default'%>
+<div class="form-group">
+    <br/>
+    <%= link_to root_path, :class => 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Voltar
+    <% end %>
+</div>
 

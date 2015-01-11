@@ -1,9 +1,16 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h2 class="subhead navbar text-center alert">Detalhes</h2>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @category.name %></dd>
+</dl>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<div class="form-group">
+    <br/>
+    <%= link_to categories_path, :class => 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Voltar
+    <% end %>
+</div>

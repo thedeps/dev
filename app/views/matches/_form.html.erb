@@ -13,7 +13,12 @@
     </div>
   <% end %>
   
-  <% if  @teams.blank? %>
+  <% unless @teams.blank? %>
+    <div class="form-group">
+      <h5>Não existe equipes cadastradas.</h5>
+    </div>
+  <% else %>
+    
     <div class="form-group">
       <%= f.label :team_id, 'Equipe 1' %>
       <%= f.select :team1_id, options_for_select(Team.all.map {|team| [team.name,team.id]})%>
@@ -23,23 +28,22 @@
       <%= f.label :team_id, 'Equipe 2' %>
       <%= f.select :team2_id, options_for_select(Team.all.map {|team2| [team2.name,team2.id]})%>
     </div>
-  <% else %>
+    
     <div class="form-group">
-      <h5>Não existe equipes cadastradas.</h5>
+      <%= f.label :date_match,'Data da Partida'%>
+      <%= f.datetime_select :date_match, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :link%>
+      <%= f.text_field :link, :class => "form-control" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.submit :class => "btn btn-primary" %>
     </div>
   <% end %>
   
   <div class="form-group">
-    <%= f.label :date_match,'Data da Partida'%>
-    <%= f.datetime_select :date_match, :class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :link%>
-    <%= f.text_field :link, :class => "form-control" %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.submit :class => "btn btn-primary" %>
     <%= link_to matches_path, :class => 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
       Voltar

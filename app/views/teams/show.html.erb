@@ -2,13 +2,10 @@
   <h2 class="subhead navbar text-center alert"> <%= @team.name %></h2>
 </div>
 
-<dl class="dl-horizontal">
-  <dt>Tag:</dt>
-  <dd><%= @team.tag %></dd>
+<b>Tag: </b><%= @team.tag %>
+<br>
+<b>Capitão: </b><%= @team.captain %>
 
-  <dt>Capitão:</dt>
-  <dd><%= @team.captain %></dd>
-</dl>
 
 <fieldset>
   <legend>Adicionar Jogador</legend>
