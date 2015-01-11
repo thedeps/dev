@@ -4,9 +4,28 @@
       <%= link_to "DotaPB", root_path, :class => "navbar-brand" %>
       <nav>
         <ul class="nav pull-right navbar-nav">
-          <% if user_signed_in? %>
+          <% if admin_signed_in? %>
+            <li>
+              <%= link_to('Usuários', users_path ) %>
+            </li>
+            <li>
+              <%= link_to('Categorias', categories_path ) %>
+            </li>
+            <li>
+              <%= link_to('Partidas', matches_path ) %>
+            </li>
+            <li>
+              <%= link_to('Editar Cadastro', edit_admin_registration_path) %>        
+            </li>
+            <li>
+              <%= link_to('Sair', destroy_admin_session_path, :method => :delete) %>        
+            </li>
+          <% elsif user_signed_in? %>
             <li>
               <%= link_to('Equipes', teams_path ) %>
+            </li>
+            <li>
+              <%= link_to('Partidas', matches_path ) %>
             </li>
             <li>
               <%= link_to('Editar Cadastro', edit_user_registration_path) %>        

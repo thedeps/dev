@@ -45,3 +45,9 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'bootstrap-generators', '~> 3.3.1'
 
+#Date
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
+                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
+                              
+#Time
+gem "combined_time_select", "~> 1.0.1"

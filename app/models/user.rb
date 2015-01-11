@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   
   #Está relacionado ao devise:
   
-  
   # Include default devise modules. Others available are:
   #:confirmable
   #:lockable, :timeoutable and :omniauthable

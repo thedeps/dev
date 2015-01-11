@@ -16,4 +16,6 @@
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require_tree .
+//= require bootstrap-datepicker
+
 

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   
+  resources :matches 
+
+  devise_for :admins
+  #Rota relacionado a partida
+  #Rota relacionado a equipe
   #Rota para poder adicionar usuário(jogador) a equipe
   post "/teams/add_user" => "teams#add_user"
   
@@ -10,10 +15,7 @@ Rails.application.routes.draw do
   resources :teams do
     resources :users
   end
-  
-  #Rota do devise e ActiveAdmin
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  #Rota do devise e ActiveAdmin, ActiveAdmin::Devise.config
   devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
    resources :users
    
@@ -23,8 +25,5 @@ Rails.application.routes.draw do
   #Rota para pegar a página estática home
   root :to => 'static_pages#home'
   
-  #Não está sendo usado
-  #get "static_pages/home"
-  #get 'teams/:id/finished' => 'teams#finished', as: :finished
   
 end

@@ -1,0 +1,49 @@
+<%= form_for(@match, :html => { :class => "form-horizontal", :role => "form" }) do |f| %>
+
+  <% if @match.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h4>
+
+      <ul>
+      <% @match.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <% if  @teams.blank? %>
+    <div class="form-group">
+      <%= f.label :team_id, 'Equipe 1' %>
+      <%= f.select :team1_id, options_for_select(Team.all.map {|team| [team.name,team.id]})%>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :team_id, 'Equipe 2' %>
+      <%= f.select :team2_id, options_for_select(Team.all.map {|team2| [team2.name,team2.id]})%>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <h5>Não existe equipes cadastradas.</h5>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= f.label :date_match,'Data da Partida'%>
+    <%= f.datetime_select :date_match, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :link%>
+    <%= f.text_field :link, :class => "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.submit :class => "btn btn-primary" %>
+    <%= link_to matches_path, :class => 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+      Voltar
+    <% end %>
+  </div>
+  
+<% end %>

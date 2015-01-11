@@ -8,13 +8,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
-    @user = User.find(params[:user_id])
-    if User.exists?(login: @user.login,id_steam: @user.id_steam)
-      redirect_to root_path
-    end
-    super
-  end
+  #def create
+    #super
+  #end
 
   # GET /resource/edit
   # def edit

@@ -1,6 +1,11 @@
 class TeamsController < InheritedResources::Base
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   
+  #Listando todos os times
+  def index
+    @teams = Team.all
+  end
+  
   #Adicionando jogador a equipe
   def add_user
     @team = Team.find(params[:team_id])

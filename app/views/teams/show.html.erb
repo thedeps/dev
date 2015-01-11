@@ -33,8 +33,8 @@
   <legend>Jogadores</legend>
   <% @team.users.each do |user| %>
       <p>
-        <strong>Login:</strong>
-        <%= user.login %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <!--<strong>Login:</strong>
+        <%= user.login %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
         <strong>Id_steam:</strong>
         <%= user.id_steam %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <td><%= link_to '', [user.team, user], method: :delete, data: { confirm: 'Você tem certeza?' },class: 'btn btn-default glyphicon glyphicon-trash' %></td>
@@ -49,9 +49,5 @@
     <%= link_to teams_path, :class => 'btn btn-default' do %>
       <span class="glyphicon glyphicon-list-alt"></span>
       Voltar
-    <% end %>
-    <%= link_to edit_team_path(@team), :class => 'btn btn-primary' do %>
-      <span class="glyphicon glyphicon-pencil"></span>
-      Editar
     <% end %>
 </div>

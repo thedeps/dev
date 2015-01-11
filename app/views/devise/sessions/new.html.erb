@@ -25,4 +25,6 @@
 
 <%= render "devise/shared/links" %>
 
-<%= link_to('Se você é um usuário administrador, clique aqui!', admin_user_session_path)  %>
+<% if current_page?(new_user_session_path) %>
+  <%= link_to('Administrador? Clique Aqui!', new_admin_session_path ) %>
+<% end %>
