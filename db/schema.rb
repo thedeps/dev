@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111053855) do
+ActiveRecord::Schema.define(version: 20150113015420) do
 
   create_table "admins", force: true do |t|
     t.boolean  "admin",                  default: true
@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(version: 20150111053855) do
     t.datetime "updated_at"
   end
 
+  create_table "championships", force: true do |t|
+    t.string   "name"
+    t.string   "prize"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "matches", force: true do |t|
     t.integer  "team1_id"
     t.integer  "team2_id"
@@ -54,7 +61,10 @@ ActiveRecord::Schema.define(version: 20150111053855) do
     t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "championship_id"
   end
+
+  add_index "matches", ["championship_id"], name: "index_matches_on_championship_id"
 
   create_table "teams", force: true do |t|
     t.string   "name"

@@ -19,7 +19,7 @@
           <td><%= team.tag %></td>
           <td><%= team.captain %></td>
           <% if team.captain == current_user.id_steam %>
-            <td><%= link_to 'Adicionar Jogador', team %></td>
+            <td><%= link_to 'Adicionar Jogador', team, class: 'btn btn-default' %></td>
             <td><%= link_to '', edit_team_path(team), class: 'btn btn-default glyphicon glyphicon-edit' %></td>
             <td><%= link_to '', team, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-default glyphicon glyphicon-trash' %></td>
           <% end -%>
@@ -31,8 +31,7 @@
   <% end %>
 </div>
 <br>
-<%= link_to new_team_path, :class => 'btn btn-primary' do %>
-  <span class="glyphicon glyphicon-plus"></span>
+<%= link_to new_team_path, :class => 'btn btn-primary' do%>
     Nova equipe
 <% end %>
 <br><br><br>

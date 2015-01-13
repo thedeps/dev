@@ -13,12 +13,16 @@
           <th>Link</th>
       </thead>
   
-      <tbody>
+      <tbody class="text-center">
           <%= content_tag_for(:tr, @matches) do |match| %>
             <td><%= match.team1.name %></td>
             <td><%= match.team2.name %></td>
-            <td><%= match.date_match %></td>
-            <td><%= match.link %></td>
+            <td><%= match.date_match%></td>
+            <% if not match.link.blank?%>
+              <td><%= match.link %></td>
+            <% else %>
+              <td class="text-center">Essa partida não possui link.</td>
+            <% end %>
             <% unless user_signed_in? %>
               <td><%= link_to '', edit_match_path(match), class: 'btn btn-default glyphicon glyphicon-edit' %></td>
               <td><%= link_to '', match, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-default glyphicon glyphicon-trash' %></td>
@@ -33,7 +37,6 @@
 <br>
 <% unless user_signed_in? %>
   <%= link_to new_match_path, :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
       Nova Partida
   <% end %>
 <% end %>

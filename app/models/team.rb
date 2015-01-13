@@ -6,5 +6,4 @@ class Team < ActiveRecord::Base
   validates :name, :tag, presence: true
   validates :name, :tag, uniqueness: true
   
-  
 end

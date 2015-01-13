@@ -1,6 +1,14 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_login
+  
+  def require_login
+    if not user_signed_in? || admin_signed_in?
+      flash[:error] = "Você precisa estar logado para acessar esta seção."
+      redirect_to new_user_session_path # halts request cycle
+    end
+  end
+  
   # GET /categories
   # GET /categories.json
   def index

@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h2 class="subhead navbar text-center alert"> <%= @team.name %></h2>
+  <h2> <%= @team.name %></h2>
 </div>
 
 <b>Tag: </b><%= @team.tag %>
@@ -15,7 +15,7 @@
         <%= hidden_field_tag(:team_id, @team.id) %>
         <%= label_tag :user_id, "Jogador: " %>&nbsp;&nbsp;&nbsp;
         <!--Listando os jogadores, menos o capitão-->
-        <%= select_tag :user_id, options_for_select(User.all.map{|user| [user.id_steam, user.id] unless user.id_steam == @team.captain })%>
+        <%= select_tag :user_id, options_for_select(User.all.map{|user| [user.id_steam, user.id] unless user.id_steam == @team.captain }) %>
         &nbsp;&nbsp;&nbsp;
         <%= submit_tag 'Adicionar', class: 'btn btn-success' %>
       </div>
@@ -29,16 +29,25 @@
 <fieldset>
   <legend>Jogadores</legend>
   <% @team.users.each do |user| %>
-      <p>
-        <!--<strong>Login:</strong>
-        <%= user.login %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-        <strong>Id_steam:</strong>
-        <%= user.id_steam %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <td><%= link_to '', [user.team, user], method: :delete, data: { confirm: 'Você tem certeza?' },class: 'btn btn-default glyphicon glyphicon-trash' %></td>
-      </p>
-      <hr/>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Login</th>
+          <th>Id_Steam</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      
+      <tbody class="text-center">
+        <tr>
+          <td><%= user.login %></td>
+          <td><%= user.id_steam %></td>
+          <td><%= user.email %></td>
+          <td><%= link_to '', [user.team, user], method: :delete, data: { confirm: 'Você tem certeza?' },class: 'btn btn-default glyphicon glyphicon-trash' %></td>
+        <tr>
+      </tbody>
+    </table>
   <% end %>
-  <br/>
 </fieldset>
 
 <div class="form-group">

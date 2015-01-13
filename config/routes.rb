@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
+
   
+  
+  #Rota para poder adicionar partida a campeonato
+  post "/championships/add_match" => "championships#add_match"
+  
+  #Rota para deletar partida do campeonato
+  delete "/championships/:championship_id/matches/:id" => "championships#delete_match"
+  
+  resources :championships do
+    resources :matches
+  end
+
   resources :matches 
 
   devise_for :admins
