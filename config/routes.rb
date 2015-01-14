@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   
-  
   #Rota para poder adicionar partida a campeonato
   post "/championships/add_match" => "championships#add_match"
   

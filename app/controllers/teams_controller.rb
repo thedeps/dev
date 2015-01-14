@@ -62,10 +62,7 @@ class TeamsController < InheritedResources::Base
         @team.users.delete(@user)
     end
     
-    respond_to do |format|
-      #1st argument reference the path /posts/:post_id/comments/
-      format.html { redirect_to(team_path) }
-    end
+    render action: 'show'
   end
 
   private

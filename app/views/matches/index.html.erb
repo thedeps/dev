@@ -11,6 +11,7 @@
           <th>Equipe 2</th>
           <th>Date da Partida</th>
           <th>Link</th>
+          <th>Campeonato/Amistoso</th>
       </thead>
   
       <tbody class="text-center">
@@ -22,6 +23,11 @@
               <td><%= match.link %></td>
             <% else %>
               <td class="text-center">Essa partida não possui link.</td>
+            <% end %>
+            <% if not match.championship.blank?%>
+              <td><%= match.championship.name%></td>
+            <% else %>
+              <td>Amistoso</td>
             <% end %>
             <% unless user_signed_in? %>
               <td><%= link_to '', edit_match_path(match), class: 'btn btn-default glyphicon glyphicon-edit' %></td>

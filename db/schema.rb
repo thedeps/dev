@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113015420) do
+ActiveRecord::Schema.define(version: 20150114051445) do
 
   create_table "admins", force: true do |t|
     t.boolean  "admin",                  default: true
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150113015420) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "championship_id"
+    t.boolean  "friendly",        default: false
   end
 
   add_index "matches", ["championship_id"], name: "index_matches_on_championship_id"

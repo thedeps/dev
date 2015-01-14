@@ -1,6 +1,6 @@
 class Championship < ActiveRecord::Base
   #Associações
-  has_many :matches
+  has_many :matches, dependent: :destroy
   
   #Validações
   validates :name, presence: true

@@ -5,52 +5,46 @@
 <b>Nome do Campeonato: </b><%= @championship.name %>
 <br>
 <b>Prêmio: </b><%= @championship.prize %>
+<br>
 
 <fieldset>
-  <legend>Adicionar Partida</legend>
-  <%= form_tag(championships_add_match_path, method: "post") do %>
-  <div class="field">
-      <%= hidden_field_tag(:championship_id, @championship.id) %>
-      <%= label_tag :match_id, "Partida: " %>
-      <%= select_tag :match_id, options_for_select(Match.all.map{|match| ['Equipe 1: '+match.team1.name+'  X  Equipe 2: '+match.team2.name,match.id] })%>
-      <%= submit_tag 'Adicionar', class: 'btn btn-success' %>
-  </div>
-  <% end %>
-</fieldset>
-
-<fieldset>
-  <b>Adicionar Nova Partida:</b>
-  <%= link_to new_match_path, :class => 'btn btn-primary' do %>
+  <b>Adicionar Partida:</b>
+  <%= link_to new_match_path(:championship_id => @championship.id) , :class => 'btn btn-primary' do %>
     Nova Partida
   <% end %>
 </fieldset>
-
+<br>
 <fieldset>
   <legend>Partidas</legend>
-  <% @championship.matches.each do |match| %>
-   <table class="table table-striped table-bordered table-hover">
-     <thead>
-        <tr>
-          <th>Equipe 1</th>
-          <th>Equipe 2</th>
-          <th>Date da Partida</th>
-          <th>Link</th>
-      </thead>
-      <tbody class="text-center">
-        <tr>
-          <td><%= match.team1.name %></td>
-          <td><%= match.team2.name %></td>
-          <td><%= match.date_match%></td>
-          <% if not match.link.blank?%>
-              <td><%= match.link %></td>
-            <% else %>
-              <td class="text-center">Essa partida não possui link.</td>
+    <% if not @championship.matches.blank? %>
+      <table class="table table-striped table-bordered table-hover">
+       <thead>
+          <tr>
+            <th>Equipe 1</th>
+            <th>Equipe 2</th>
+            <th>Date da Partida</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <% @championship.matches.each do |match| %>
+            <tr>
+              <td><%= match.team1.name %></td>
+              <td><%= match.team2.name %></td>
+              <td><%= match.date_match%></td>
+              <% if not match.link.blank?%>
+                  <td><%= match.link %></td>
+                <% else %>
+                  <td class="text-center">Essa partida não possui link.</td>
+              <% end %>
+              <td><%= link_to '', [match.championship, match], method: :delete, data: { confirm: 'Você tem certeza?' },class: 'btn btn-default glyphicon glyphicon-trash' %></td>
+           </tr>
           <% end %>
-          <td><%= link_to '', [match.championship, match], method: :delete, data: { confirm: 'Você tem certeza?' },class: 'btn btn-default glyphicon glyphicon-trash' %></td>
-       </tr>
-     </tbody>
-   </table>
-  <% end %>
+        </tbody>
+        </table>
+    <% else %>
+      <h5 class="text-center">Não existe partidas cadastradas.</h5>
+    <% end %>
 </fieldset>
 
 <div class="form-group">
