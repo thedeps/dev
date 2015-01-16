@@ -10,7 +10,11 @@ class TeamsController < InheritedResources::Base
   end
   #Listando todos os times
   def index
-    @teams = Team.all
+    @teams = Team.all.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+  end
+  
+  def show
+    @users = User.all.paginate(:page => params[:page], :per_page => 5)
   end
   
   # GET /teams/new
@@ -32,25 +36,34 @@ class TeamsController < InheritedResources::Base
       end
     end
   end
-  
+
   def destroy
     @team.destroy
     respond_to do |format|
-      #1st argument reference the path /posts/:post_id/comments/
-      format.html { redirect_to(teams_url) }
+      format.html { redirect_to teams_url,notice: 'Equipe excluida com sucesso.'}
       format.xml  { head :ok }
     end
   end
   
+  
+  
   #Adicionando jogador a equipe
   def add_user
-    @team = Team.find(params[:team_id])
-    @user = User.find(params[:user_id])
+    @team = Team.find_by_id(params[:team_id])
+    @user = User.find_by_id(params[:user_id])
+    
     unless @team.users.include? @user
       @team.users << @user
     end
-    render action: 'show'
+    
+    @users = User.all.paginate(:page => params[:page], :per_page => 5)
+    
+    respond_to do |format|
+        format.html { redirect_to @team, notice: 'Jogador adicionado com sucesso.' }
+        format.json { render :show, status: :created, location: @team }
+    end
   end
+  
   
   #Deletando jogador da equipe
   def delete_user
@@ -61,8 +74,12 @@ class TeamsController < InheritedResources::Base
     if @user
         @team.users.delete(@user)
     end
+    @users = User.all.paginate(:page => params[:page], :per_page => 5)
     
-    render action: 'show'
+    respond_to do |format|
+        format.html { redirect_to @team, notice: 'Jogador Removido com sucesso.' }
+        format.json { render :show, status: :created, location: @team }
+    end
   end
 
   private

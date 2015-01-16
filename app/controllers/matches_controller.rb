@@ -1,4 +1,5 @@
 class MatchesController < InheritedResources::Base
+  before_action :set_match, only: [:show, :edit, :update, :destroy]
   before_action :require_login
   
   def require_login
@@ -9,7 +10,7 @@ class MatchesController < InheritedResources::Base
   end
   
   def index
-    @matches = Match.all
+    @matches = Match.all.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
   
   def new
@@ -21,7 +22,9 @@ class MatchesController < InheritedResources::Base
   
   def create
     @match = Match.new(match_params)
-    unless @match.friendly == 1
+    
+    if Championship.find_by_id(params[:championship_id]).blank?
+      @match.friendly = true
       respond_to do |format|
         if @match.save
           format.html { redirect_to matches_path notice: 'Partida criada com sucesso.' }
@@ -35,12 +38,30 @@ class MatchesController < InheritedResources::Base
       unless $championship.matches.include? @match
         $championship.matches << @match
       end
-      redirect_to  "/championships/"+$championship.id.to_s
+      @championship_id = $championship
       $championship = nil
+      
+      respond_to do |format|
+        format.html { redirect_to  "/championships/"+@championship_id.to_s }
+        format.xml  { head :ok }
+      end
+      
+    end
+  end
+  
+  def destroy
+    @match.destroy
+    respond_to do |format|
+      format.html { redirect_to matches_url,notice: 'Partida excluida com sucesso.'}
+      format.xml  { head :ok }
     end
   end
   
   private
+  
+    def set_match
+      @match = Match.find(params[:id])
+    end
 
     def match_params
       params.require(:match).permit(:team1_id, :team2_id, :date_match, :link)

@@ -9,7 +9,7 @@ class UsersController < InheritedResources::Base
   end
   #Listando todos os times
   def index
-    @users = User.all
+    @users = User.all.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
   
   def match_params

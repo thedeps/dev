@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 gem 'devise'
-gem 'activeadmin', github: 'activeadmin'
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do
@@ -51,3 +50,6 @@ gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
                               
 #Time
 gem "combined_time_select", "~> 1.0.1"
+
+#Paginação
+gem 'will_paginate-bootstrap'

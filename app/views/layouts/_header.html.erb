@@ -1,9 +1,9 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-inverse ">
   <div class="navbar-inner">
     <div class="container">
       <%= link_to image_tag("logo.png", :alt => "logoDotaPBLeague"), root_path, :class => "navbar-brand" %>
       <nav>
-        <ul class="nav pull-right navbar-nav">
+        <ul class="nav pull-right navbar-nav ">
           <% if admin_signed_in? %>
             <li>
               <%= link_to('Usuários', users_path ) %>
@@ -15,7 +15,7 @@
               <%= link_to('Campeonatos', championships_path ) %>
             </li>
             <li>
-              <%= link_to('Partidas', matches_path ) %>
+              <%= link_to('Amistosos', matches_path ) %>
             </li>
             <li>
               <%= link_to('Editar Cadastro', edit_admin_registration_path) %>        
@@ -28,7 +28,7 @@
               <%= link_to('Campeonatos', championships_path ) %>
             </li>
             <li>
-              <%= link_to('Partidas', matches_path ) %>
+              <%= link_to('Amistosos', matches_path ) %>
             </li>
             <li>
               <%= link_to('Equipes', teams_path ) %>

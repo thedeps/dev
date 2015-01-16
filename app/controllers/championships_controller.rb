@@ -9,24 +9,23 @@ class ChampionshipsController < InheritedResources::Base
     end
   end
   
+  def index
+    @championships = Championship.all.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+  end
+  
+  def show
+    @matches = @championship.matches.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    respond_to do |format|
+        format.html
+    end
+  end
   def destroy
     @championship.destroy
     respond_to do |format|
-      #1st argument reference the path /posts/:post_id/comments/
-      format.html { redirect_to(championships_url) }
+      format.html { redirect_to championships_url , notice: 'Campeonato excluido com sucesso.' }
       format.xml  { head :ok }
     end
   end
-  
-  # #Adicionando equipe a campeonato
-  # def add_match
-  #   @championship = Championship.find(params[:championship_id])
-  #   @match = Match.find(params[:match_id])
-  #   unless @championship.matches.include? @match
-  #     @championship.matches << @match
-  #   end
-  #   render action: 'show'
-  # end
   
   #Deletando jogador da equipe
   def delete_match
@@ -34,8 +33,12 @@ class ChampionshipsController < InheritedResources::Base
     @match = @championship.matches.find(params[:id])
     
     @match.destroy
+    @matches = @championship.matches.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
     
-    
+    respond_to do |format|
+      format.html { redirect_to(championships_url) }
+      format.xml  { head :ok }
+    end
     render action: 'show'
   end
 

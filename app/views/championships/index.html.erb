@@ -11,19 +11,19 @@
           <th>Prêmio</th>
         </tr>
       </thead>
-  
       <tbody class="text-center">
         <%= content_tag_for(:tr, @championships) do |championship| %>
           <td><%= championship.name %></td>
           <td><%= championship.prize %></td>
-          <td><%= link_to 'Adicionar Partidas', championship, class: 'btn btn-default'  %></td>
           <% unless user_signed_in? %>
+            <td><%= link_to 'Adicionar Partidas', championship, class: 'btn btn-default'  %></td>
             <td><%= link_to '', edit_championship_path(championship), class: 'btn btn-default glyphicon glyphicon-edit' %></td>
             <td><%= link_to '', championship, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-default glyphicon glyphicon-trash' %></td>
           <% end %>
         <% end %>
       </tbody>
     </table>
+    <%= will_paginate @championships, renderer: BootstrapPagination::Rails, previous_label: t(:prev), next_label: t(:next) %>
   <% else %>
     <h5 class="text-center">Não existe campeonatos cadastrados.</h5>
   <% end %>

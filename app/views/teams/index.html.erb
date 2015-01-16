@@ -26,6 +26,7 @@
         <% end %>
       </tbody>
     </table>
+    <%= will_paginate @teams, renderer: BootstrapPagination::Rails, previous_label: t(:prev), next_label: t(:next) %>
   <% else %>
     <h5 class="text-center">Não existe equipes cadastradas.</h5>
   <% end %>
