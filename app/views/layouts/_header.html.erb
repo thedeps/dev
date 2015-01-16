@@ -1,7 +1,12 @@
-<header class="navbar navbar-fixed-top navbar-inverse ">
+<header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
       <%= link_to image_tag("logo.png", :alt => "logoDotaPBLeague"), root_path, :class => "navbar-brand" %>
+      <% if admin_signed_in? %>
+        <p class="navbar-text">Bem vindo, <%= current_admin.email %>, <%= link_to('Sair', destroy_admin_session_path, :method => :delete) %></p>
+      <% elsif user_signed_in?%>
+        <p class="navbar-text">Bem vindo <%= current_user.login %>, <%= link_to('Sair', destroy_user_session_path, :method => :delete) %></p>
+      <% end %>
       <nav>
         <ul class="nav pull-right navbar-nav ">
           <% if admin_signed_in? %>
@@ -20,9 +25,6 @@
             <li>
               <%= link_to('Editar Cadastro', edit_admin_registration_path) %>        
             </li>
-            <li>
-              <%= link_to('Sair', destroy_admin_session_path, :method => :delete) %>        
-            </li>
           <% elsif user_signed_in? %>
             <li>
               <%= link_to('Campeonatos', championships_path ) %>
@@ -35,9 +37,6 @@
             </li>
             <li>
               <%= link_to('Editar Cadastro', edit_user_registration_path) %>        
-            </li>
-            <li>
-              <%= link_to('Sair', destroy_user_session_path, :method => :delete) %>        
             </li>
           <% else %>
             <li>

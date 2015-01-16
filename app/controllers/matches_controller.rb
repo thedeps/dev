@@ -1,4 +1,4 @@
-class MatchesController < InheritedResources::Base
+class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
   before_action :require_login
   

@@ -1,4 +1,4 @@
-class ChampionshipsController < InheritedResources::Base
+class ChampionshipsController < ApplicationController
   before_action :set_championship, only: [:show, :edit, :update, :destroy]
   before_action :require_login
   

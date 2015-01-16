@@ -1,4 +1,5 @@
-class UsersController < InheritedResources::Base
+class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_login
   
   def require_login
@@ -12,7 +13,21 @@ class UsersController < InheritedResources::Base
     @users = User.all.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
   
-  def match_params
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url,notice: 'Usuário excluida com sucesso.'}
+      format.xml  { head :ok }
+    end
+  end
+  
+  private
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
+  
+  def user_params
     params.require(:match).permit(:login, :id_steam, :email, :password, :password_confirmation,:category_id,:team_id)
   end
 
