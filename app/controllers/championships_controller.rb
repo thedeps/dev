@@ -13,6 +13,25 @@ class ChampionshipsController < ApplicationController
     @championships = Championship.all.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
   
+  # GET /championship/new
+  def new
+    @championship = Championship.new
+  end
+
+  def create
+    @championship = Championship.new(championship_params)
+    
+    respond_to do |format|
+      if @championship.save
+        format.html { redirect_to @championship, notice: 'Campeonato criado com sucesso.' }
+        format.json { render :show, status: :created, location: @championship }
+      else
+        format.html { render :new }
+        format.json { render json: @championship.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+ 
   def show
     @matches = @championship.matches.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
     respond_to do |format|

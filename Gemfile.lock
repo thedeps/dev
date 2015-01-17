@@ -52,7 +52,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    combined_time_select (1.0.1)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -63,6 +62,8 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.2)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.2.5)
@@ -169,8 +170,8 @@ DEPENDENCIES
   bootstrap-generators (~> 3.3.1)
   bootstrap-sass (~> 3.2.0)
   coffee-rails (~> 4.0.0)
-  combined_time_select (~> 1.0.1)
   devise
+  friendly_id (~> 5.1.0)
   jbuilder (~> 2.0)
   jquery-rails
   pg (= 0.12.2)

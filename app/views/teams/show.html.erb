@@ -43,17 +43,13 @@
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
-          <th class="text-center">Login</th>
           <th class="text-center">Id_Steam</th>
-          <th class="text-center">Email</th>
         </tr>
       </thead>
       <tbody class="text-center">
         <% @team.users.each do |user| %>
             <tr>
-              <td><%= user.login %></td>
               <td><%= user.id_steam %></td>
-              <td><%= user.email %></td>
               <td><%= link_to '', [user.team, user], method: :delete, data: { confirm: 'Você tem certeza?' },class: 'btn btn-default glyphicon glyphicon-trash' %></td>
             </tr>
         <% end %>

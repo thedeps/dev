@@ -1,5 +1,5 @@
 <h2>Cadastro</h2>
-
+<div class="form-group">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
   <% if current_page?(new_user_registration_path) %> 
@@ -33,7 +33,7 @@
   <% if current_page?(new_user_registration_path) %> 
     <div class="form-group">
       <%= f.label :category_id, 'Tipo de Usuário' %><br>
-      <%= f.select :category_id, options_for_select(Category.all.map {|category| [category.name,category.id]}), {}%>
+      <%= f.select :category_id, options_for_select(Category.all.map {|category| [category.name,category.id]}), {}, :class => "form-control"%>
     </div>
   <% end %>
   
@@ -47,5 +47,6 @@
 </div>
   </div>
 <% end %>
-
+</div>
 <%= render "devise/shared/links" %>
+<br/><br/><br/>

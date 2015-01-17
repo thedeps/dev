@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
- 
+  
+  
   def index
     @teams = Team.all
   end

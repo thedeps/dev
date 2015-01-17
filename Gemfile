@@ -48,8 +48,10 @@ gem 'bootstrap-generators', '~> 3.3.1'
 gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
                               :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
                               
-#Time
-gem "combined_time_select", "~> 1.0.1"
-
 #Paginação
 gem 'will_paginate-bootstrap'
+
+#friendly_id
+gem 'friendly_id', '~> 5.1.0'
+
+#Gem Inédita - https://github.com/argerim/select2-rails.git
