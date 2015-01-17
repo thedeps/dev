@@ -31,6 +31,19 @@ class ChampionshipsController < ApplicationController
       end
     end
   end
+  
+  
+  def update
+    respond_to do |format|
+      if @championship.update(championship_params)
+        format.html { redirect_to championships_path, notice: 'Campeonato atualizada com sucesso.' }
+        format.json { render :show, status: :ok, location: @championship }
+      else
+        format.html { render :edit }
+        format.json { render json: @championship.errors, status: :unprocessable_entity }
+      end
+    end
+  end
  
   def show
     @matches = @championship.matches.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')

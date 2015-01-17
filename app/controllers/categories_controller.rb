@@ -18,6 +18,9 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    if request.path != category_path(@category)
+      redirect_to @category, status: :moved_permanently
+    end
   end
 
   # GET /categories/new
@@ -50,7 +53,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Tipo de usuário atualizado com sucesso.' }
+        format.html { redirect_to categories_path, notice: 'Tipo de usuário atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @category }
       else
         format.html { render :edit }

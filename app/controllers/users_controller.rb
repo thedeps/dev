@@ -13,6 +13,18 @@ class UsersController < ApplicationController
     @users = User.all.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
   
+  def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to users_path, notice: 'Usuário atualizado com sucesso.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   def destroy
     @user.destroy
     respond_to do |format|

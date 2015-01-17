@@ -52,6 +52,6 @@ gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
 gem 'will_paginate-bootstrap'
 
 #friendly_id
-gem 'friendly_id', '~> 5.1.0'
+gem 'friendly_id'
 
 #Gem Inédita - https://github.com/argerim/select2-rails.git

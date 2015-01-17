@@ -9,4 +9,6 @@ class Match < ActiveRecord::Base
   
   #Validações
   validates :team1_id, :team2_id, :date_match, presence: true
+  
+
 end
