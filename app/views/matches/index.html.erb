@@ -3,7 +3,7 @@
 </div>
 
 <div class="table-responsive">
-  <% unless @matches.blank? %>
+  <% unless $friendly_array.blank? %>
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
@@ -13,8 +13,7 @@
           <th>Link</th>
       </thead>
       <tbody class="text-center">
-        <%= content_tag_for(:tr, @matches) do |match| %>
-          <% if match.friendly == true %>
+        <%= content_tag_for(:tr, $friendly_array) do |match| %>
           <td><%= match.team1.name %></td>
           <td><%= match.team2.name %></td>
           <td><%= match.date_match%></td>
@@ -26,7 +25,6 @@
           <% unless user_signed_in? %>
             <td><%= link_to '', edit_match_path(match), class: 'btn btn-default glyphicon glyphicon-edit' %></td>
             <td><%= link_to '', match, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-default glyphicon glyphicon-trash' %></td>
-          <% end %>
           <% end %>
         <% end %>
       </tbody>

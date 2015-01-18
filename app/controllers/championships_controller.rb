@@ -68,10 +68,9 @@ class ChampionshipsController < ApplicationController
     @matches = @championship.matches.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
     
     respond_to do |format|
-      format.html { redirect_to(championships_url) }
+      format.html { redirect_to @championship }
       format.xml  { head :ok }
     end
-    render action: 'show'
   end
 
   private

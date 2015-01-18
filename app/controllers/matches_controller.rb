@@ -10,7 +10,7 @@ class MatchesController < ApplicationController
   end
   
   def index
-    @matches = Match.all.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    @matches = Match.all.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
   end
   
   def new
@@ -23,10 +23,11 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(match_params)
     
-    if Championship.find_by_id(params[:championship_id]).blank?
+    if $championship.nil?
       @match.friendly = true
       respond_to do |format|
         if @match.save
+          friendly()
           format.html { redirect_to matches_path notice: 'Partida criada com sucesso.' }
           format.json { render :show, status: :created, location: @match }
         else
@@ -38,19 +39,41 @@ class MatchesController < ApplicationController
       unless $championship.matches.include? @match
         $championship.matches << @match
       end
-      @championship_id = $championship
+      @champ = $championship
       $championship = nil
-      
       respond_to do |format|
-        format.html { redirect_to  "/championships/"+@championship_id.to_s }
+        format.html { redirect_to  @champ }
         format.xml  { head :ok }
       end
-      
     end
   end
   
   def destroy
+    delete_match = @match
     @match.destroy
+    destroy_friendly(delete_match)
+  end
+  
+  $friendly_array = Array.new
+  def friendly
+    @matches = Match.all.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @matches.each do |match|
+      if match.friendly == true
+        if not $friendly_array.include? match
+          $friendly_array << match
+          $friendly_array.sort!{|a,b| b.id <=> a.id }
+        end
+      end
+    end
+  end
+  
+  def destroy_friendly(match)
+    $friendly_array.each do |friendly|
+      if friendly.id == match.id
+        $friendly_array.delete(match)
+      end
+    end
+    
     respond_to do |format|
       format.html { redirect_to matches_url,notice: 'Partida excluida com sucesso.'}
       format.xml  { head :ok }
