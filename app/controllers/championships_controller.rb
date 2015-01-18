@@ -59,19 +59,18 @@ class ChampionshipsController < ApplicationController
     end
   end
   
-  #Deletando jogador da equipe
-  def delete_match
-    @championship = Championship.find(params[:championship_id])
-    @match = @championship.matches.find(params[:id])
+  # def delete_match
+  #   @championship = Championship.find(params[:championship_id])
+  #   @match = @championship.matches.find(params[:id])
     
-    @match.destroy
-    @matches = @championship.matches.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+  #   @match.destroy
+  #   @matches = @championship.matches.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
     
-    respond_to do |format|
-      format.html { redirect_to @championship }
-      format.xml  { head :ok }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to @championship }
+  #     format.xml  { head :ok }
+  #   end
+  # end
 
   private
 

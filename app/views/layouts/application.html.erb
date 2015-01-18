@@ -20,10 +20,10 @@
 <body>
   <%= render 'layouts/header' %>
   <% unless alert.blank? %>
-    <h5 class="alert text-center"><%= alert %></h5>
+    <h6 class="alert text-center"><%= alert %></h6>
   <%end%>
   <% unless notice.blank? %>
-    <h5 class="notice text-center"><%= notice %></h5>
+    <h6 class="notice text-center"><%= notice %></h6>
   <%end%>
   <div class="container">
     <%= yield %>
