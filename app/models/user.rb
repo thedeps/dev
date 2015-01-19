@@ -19,10 +19,5 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :login, use: [:slugged, :history]
   
-  User.new {
-     def should_generate_new_friendly_id?
-       slug.blank? || :login_changed?
-     end
-  }
   
 end
