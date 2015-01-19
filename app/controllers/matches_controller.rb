@@ -10,7 +10,7 @@ class MatchesController < ApplicationController
   end
   
   def index
-    @matches = Match.all.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @matches = Match.all.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
   end
   
   def new
@@ -56,7 +56,7 @@ class MatchesController < ApplicationController
   
   $friendly_array = Array.new
   def friendly
-    @matches = Match.all.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @matches = Match.all.paginate(:page => params[:page], :per_page => 30).order('created_at DESC')
     @matches.each do |match|
       if match.friendly == true
         if not $friendly_array.include? match

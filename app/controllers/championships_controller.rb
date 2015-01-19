@@ -10,7 +10,7 @@ class ChampionshipsController < ApplicationController
   end
   
   def index
-    @championships = Championship.all.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    @championships = Championship.all.paginate(:page => params[:page], :per_page => 3).order('created_at DESC')
   end
   
   # GET /championship/new
