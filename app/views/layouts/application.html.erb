@@ -26,6 +26,9 @@
   <% unless notice.blank? %>
     <h6 class="notice text-center"><%= notice %></h6>
   <%end%>
+  <% unless flash.blank? %>
+    <h6 class="notice text-center"><%= flash[:error] %></h6>
+  <%end%>
   <div class="container">
     <%= yield %>
   </div>
