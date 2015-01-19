@@ -1,19 +1,21 @@
-<h2>Reenviar instruções de confirmação</h2>
 <div class="container">
   <div class="form_">
-    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-      <%= devise_error_messages! %>
-    
-      <div class="form-group">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, :class => "form-control" %>
-      </div>
-    
-      <div class="actions">
-        <%= f.submit "Reenviar instruções de confirmação", :class => "btn btn-primary" %>
-      </div>
-    <% end %>
-    
-    <%= render "devise/shared/links" %>
+    <fieldset>
+      <legend>Reenviar instruções de confirmação</legend>
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+        <%= devise_error_messages! %>
+      
+        <div class="form-group">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, :class => "form-control" %>
+        </div>
+      
+        <div class="actions">
+          <%= f.submit "Reenviar instruções de confirmação", :class => "btn btn-primary" %>
+        </div>
+      <% end %>
+      
+      <%= render "devise/shared/links" %>
+    </fieldset>
   </div>
 </div>
