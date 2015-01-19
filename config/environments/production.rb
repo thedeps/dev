@@ -78,7 +78,7 @@ Rails.application.configure do
 
   config.assets.raise_runtime_errors = true
 
-  config.action_mailer.default_url_options = {:host => 'ec2-107-22-182-206.compute-1.amazonaws.com'}
+  config.action_mailer.default_url_options = {:host => 'http://sheltered-woodland-3797.herokuapp.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false 
