@@ -78,19 +78,18 @@ Rails.application.configure do
 
   config.assets.raise_runtime_errors = true
 
-  config.action_mailer.default_url_options = {:host => 'sheltered-woodland-3797.herokuapp.com'}
+  config.action_mailer.default_url_options = {:host => 'ec2-107-22-182-206.compute-1.amazonaws.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false 
-  config.action_mailer.default :charset => "utf-8"
   
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 5432,
-    domain: ENV["gmail.com"],
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["thedepsdev@gmail.com"],
-    password: ENV["deps1234"]
+    address:              'smtp.gmail.com',
+    port:                 5432,
+    domain:               'ec2-107-22-182-206.compute-1.amazonaws.com',
+    user_name:            'thedepsdev@gmail.com',
+    password:             'deps1234',
+    authentication:       'login',
+    enable_starttls_auto: true  
   }
 end

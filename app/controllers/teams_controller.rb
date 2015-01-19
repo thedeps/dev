@@ -13,8 +13,16 @@ class TeamsController < ApplicationController
     @teams = Team.all.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
   
+  
   def show
-    @users = User.all.paginate(:page => params[:page], :per_page => 5)
+    @users_add = Array.new
+    @users = User.all.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    @users.each do |user|
+      unless @team.users.include? user
+          @users_add << user
+          @users_add.sort!{|a,b| b.id <=> a.id }
+      end
+    end
   end
   
   # GET /teams/new

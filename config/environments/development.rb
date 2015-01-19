@@ -34,12 +34,12 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   
-  config.action_mailer.default_url_options = { :host => 'dev-alexmartinssi-3.c9.io' }
+  config.action_mailer.default_url_options = { :host => 'dev-alexmartinssi-9.c9.io' }
 
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'dev-alexmartinssi-3.c9.io',
+    domain:               'dev-alexmartinssi-9.c9.io',
     user_name:            'thedepsdev@gmail.com',
     password:             'deps1234',
     authentication:       'login',

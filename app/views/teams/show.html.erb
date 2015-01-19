@@ -11,7 +11,7 @@
     <legend>Adicionar Jogador</legend>
     <% if @team.users.count < 6 %>
         <div class="field">
-          
+          <% if not @users_add.blank?  %>
             <table class="table table-striped table-bordered table-hover">
                   <thead>
                     <tr>
@@ -19,7 +19,7 @@
                     </tr>
                   </thead>
                   <tbody class="text-center">
-                      <% @users.each do |user| %>
+                      <% @users_add.each do |user| %>
                         <tr>
                           <% unless user.id_steam == @team.captain%>  
                             <td><%= user.id_steam %></td>
@@ -30,9 +30,12 @@
                   </tbody>
             </table>
             <%= will_paginate @users, renderer: BootstrapPagination::Rails, previous_label: t(:prev), next_label: t(:next) %>
+          <% else %>
+            <p class="text-center">Não existe jogador para adicionar.</p>
+          <% end %>
         </div>
     <%- else %>
-      <p class="text-center">Atingiu o limite máximo de jogadores</p>
+      <h5 class="text-center">Atingiu o limite máximo de jogadores</h5>
     <% end %>
     
   </fieldset>
@@ -50,7 +53,7 @@
           <% @team.users.each do |user| %>
               <tr>
                 <td><%= user.id_steam %></td>
-                <td><%= link_to '', [user.team, user], method: :delete, data: { confirm: 'Você tem certeza?' },class: 'btn btn-default glyphicon glyphicon-trash' %></td>
+                <td><%= link_to '', [user.team, user], method: :delete, data: { confirm: 'Você tem certeza?'},class: 'btn btn-default glyphicon glyphicon-trash' %></td>
               </tr>
           <% end %>
         </tbody>
